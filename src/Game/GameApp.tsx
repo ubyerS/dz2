@@ -1,12 +1,10 @@
 import './GameApp.css';
-import { ScoreState } from '../Store/Store';
-import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
-// @ts-ignore
-import rockImage from '../images/rock_black.svg';
-// @ts-ignore
+import { useSelector, useDispatch } from 'react-redux';
+import { ScoreState } from '../Store/Store';
+import { useTheme } from '../ThemeChanger/ThemeChanger';
 import paperImage from '../images/paper_black.svg';
-// @ts-ignore
+import rockImage from '../images/rock_black.svg';
 import scissorsImage from '../images/scissors_black.svg';
 
 enum GameResult {
@@ -27,6 +25,7 @@ function GameApp() {
   const [gameResult, setGameResult] = useState<GameResult | null>(null);
   const [playerChoice, setPlayerChoice] = useState<Choice | null>(null);
   const [computerChoice, setComputerChoice] = useState<Choice | null>(null);
+  const { theme, handleThemeChange } = useTheme();
 
   const personScore = useSelector((state: ScoreState) => state.personScore);
   const computerScore = useSelector((state: ScoreState) => state.computerScore);
@@ -62,7 +61,13 @@ function GameApp() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#d9d9d9]">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#d9d9d9] dark:bg-[#353535]">
+      <button
+        onClick={handleThemeChange}
+        className="absolute top-8 right-8 text-3xl p-2 hover:scale-110 transition-transform dark:text-white"
+      >
+        {theme === 'light' ? 'dark' : 'light'}
+      </button>
       <h1 className="font-bold text-3xl text-blue-950 mb-8">Rock Paper Scissors</h1>
       <button onClick={handleReset} className="font-bold text-xl mb-4">
         RESET THE SCORE

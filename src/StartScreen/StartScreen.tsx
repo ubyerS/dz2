@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../ThemeChanger/ThemeChanger';
+import './StartScreen.css';
 
 function StartScreen() {
   const navigate = useNavigate();

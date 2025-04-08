@@ -50,8 +50,8 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "prettier --check",
-      "eslint --max-warnings 0 ."
+      "prettier --write",
+      "eslint --max-warnings 0"
     ]
   }
 }
