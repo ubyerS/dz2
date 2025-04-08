@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ScoreState } from '../Store/Store';
 import { useTheme } from '../ThemeChanger/ThemeChanger';
+import darkMode from '../images/dark_mode.svg';
+import lightMode from '../images/light_mode.svg';
 import paperImage from '../images/paper_black.svg';
 import whitePaperImage from '../images/paper_white.svg';
 import rockImage from '../images/rock_black.svg';
@@ -75,7 +77,11 @@ function GameApp() {
         onClick={handleThemeChange}
         className="absolute top-8 right-8 text-3xl p-2 hover:scale-110 transition-transform dark:text-white"
       >
-        {theme === 'light' ? 'dark' : 'light'}
+        {theme === 'light' ? (
+          <img src={darkMode} alt={'dark mode'} />
+        ) : (
+          <img src={lightMode} alt={'light mode'} />
+        )}
       </button>
       <h1 className="font-bold text-3xl text-blue-950 mb-8 dark:text-[#BEBFD1]">
         Rock Paper Scissors
