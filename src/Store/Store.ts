@@ -5,12 +5,19 @@ const defaultState = {
   computerScore: 0,
 };
 
+type CounterAction =
+  | { type: 'INCREMENT_PERSON' }
+  | { type: 'DECREMENT_PERSON' }
+  | { type: 'INCREMENT_COMPUTER' }
+  | { type: 'DECREMENT_COMPUTER' }
+  | { type: 'RESET_SCORES' };
+
 export interface ScoreState {
   personScore: number;
   computerScore: number;
 }
 
-function counterReducer(state = defaultState, action) {
+function counterReducer(state = defaultState, action: CounterAction): ScoreState {
   switch (action.type) {
     case 'INCREMENT_PERSON':
       return { ...state, personScore: state.personScore + 1 };
