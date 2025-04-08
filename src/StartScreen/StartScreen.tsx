@@ -7,14 +7,16 @@ function StartScreen() {
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-[#d9d9d9] dark:bg-[#353535] relative">
-      <button onClick={handleThemeChange}
-              className="absolute top-8 right-8 text-3xl p-2 hover:scale-110 transition-transform"
+      <button
+        onClick={handleThemeChange}
+        className="absolute top-8 right-8 text-3xl p-2 hover:scale-110 transition-transform dark:text-white"
       >
         {theme === 'light' ? 'dark' : 'light'}
       </button>
       <div className="flex items-center">
-        <button onClick={() => navigate('/game')}
-                className="mr-8 w-42 h-22.5 text-white text-[27px] font-bold bg-red-500 aspect-square rounded-[14px] place-content-center"
+        <button
+          onClick={() => navigate('/game')}
+          className="mr-8 w-42 h-22.5 text-white text-[27px] font-bold bg-red-500 aspect-square rounded-[14px] place-content-center"
         >
           PLAY
         </button>

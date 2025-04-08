@@ -2,8 +2,11 @@ import './GameApp.css';
 import { ScoreState } from '../Store/Store';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
+// @ts-ignore
 import rockImage from '../images/rock_black.svg';
+// @ts-ignore
 import paperImage from '../images/paper_black.svg';
+// @ts-ignore
 import scissorsImage from '../images/scissors_black.svg';
 
 enum GameResult {
@@ -29,7 +32,6 @@ function GameApp() {
   const computerScore = useSelector((state: ScoreState) => state.computerScore);
   const dispatch = useDispatch();
 
-
   const handleChoice = (playerChoice: Choice) => {
     const choices: Choice[] = ['rock', 'paper', 'scissors'];
     const computerChoice = choices[Math.floor(Math.random() * choices.length)];
@@ -53,7 +55,6 @@ function GameApp() {
     }
   };
 
-
   const handleReset = () => {
     dispatch({ type: 'RESET_SCORES' });
     setPlayerChoice(null);
@@ -63,7 +64,9 @@ function GameApp() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-[#d9d9d9]">
       <h1 className="font-bold text-3xl text-blue-950 mb-8">Rock Paper Scissors</h1>
-      <button onClick={handleReset} className="font-bold text-xl mb-4">RESET THE SCORE</button>
+      <button onClick={handleReset} className="font-bold text-xl mb-4">
+        RESET THE SCORE
+      </button>
       <div className="flex justify-between gap-x-[143px] mb-8">
         <div className="Player-score">
           <h2 className="font-semibold text-[14px]">PLAYER SCORE: {personScore}</h2>
@@ -79,24 +82,49 @@ function GameApp() {
       </div>
 
       <div className="gap-x-12">
-
         <div className="flex justify-center items-center mb-8 gap-x-14.5">
-          <div><img src={choiceImages[playerChoice]} alt={playerChoice} className="icon transform scale-x-[-1]" /></div>
+          <div>
+            <img
+              src={choiceImages[playerChoice]}
+              alt={playerChoice}
+              className="icon transform scale-x-[-1]"
+            />
+          </div>
           <div className="font-bold text-xl">VS</div>
-          <div><img src={choiceImages[computerChoice]} alt={computerChoice} className="comp" /></div>
+          <div>
+            <img
+              src={choiceImages[computerChoice]}
+              alt={computerChoice}
+              className="comp"
+            />
+          </div>
         </div>
 
-        <h2 className="flex mb-6 justify-center">Choose your move, rock paper or scissors:</h2>
+        <h2 className="flex mb-6 justify-center">
+          Choose your move, rock paper or scissors:
+        </h2>
 
         <div className="flex gap-x-12">
-          <button onClick={() => handleChoice('rock')}
-                  className="w-42.5 h-15 text-white text-[25px] font-bold bg-red-500 aspect-square rounded-[14px] place-content-center"> ROCK
+          <button
+            onClick={() => handleChoice('rock')}
+            className="w-42.5 h-15 text-white text-[25px] font-bold bg-red-500 aspect-square rounded-[14px] place-content-center"
+          >
+            {' '}
+            ROCK
           </button>
-          <button onClick={() => handleChoice('paper')}
-                  className="w-42.5 h-15 text-white text-[25px] font-bold bg-red-500 aspect-square rounded-[14px] place-content-center"> PAPER
+          <button
+            onClick={() => handleChoice('paper')}
+            className="w-42.5 h-15 text-white text-[25px] font-bold bg-red-500 aspect-square rounded-[14px] place-content-center"
+          >
+            {' '}
+            PAPER
           </button>
-          <button onClick={() => handleChoice('scissors')}
-                  className="w-42.5 h-15 text-white text-[25px] font-bold bg-red-500 aspect-square rounded-[14px] place-content-center"> SCISSORS
+          <button
+            onClick={() => handleChoice('scissors')}
+            className="w-42.5 h-15 text-white text-[25px] font-bold bg-red-500 aspect-square rounded-[14px] place-content-center"
+          >
+            {' '}
+            SCISSORS
           </button>
         </div>
       </div>

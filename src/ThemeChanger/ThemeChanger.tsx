@@ -1,3 +1,4 @@
+// @ts-ignore
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 type ThemeContextType = {
@@ -15,7 +16,7 @@ function ThemeProvider({ children }: { children: React.ReactNode }) {
     const SavedTheme = localStorage.getItem('theme') || 'light';
     setTheme(SavedTheme);
     document.documentElement.classList.toggle('dark', SavedTheme === 'dark');
-  }, []);
+  });
 
   const handleThemeChange = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
