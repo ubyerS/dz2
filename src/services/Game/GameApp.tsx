@@ -63,7 +63,7 @@ export const GameApp = () => {
       </button>
 
       <ScoreDisplay playerScore={scores.person} computerScore={scores.computer} />
-      <div className="text-red-600">
+      <div className="text-red-600 min-h-[92px]">
         <GameResultDisplay result={gameResult} />
       </div>
 
