@@ -1,8 +1,8 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { store } from './Store/Store.js';
-import App from './App';
+import { store } from './reducer/Store.ts';
+import App from './App.jsx';
 import './index.css';
 
 createRoot(document.getElementById('root')).render(

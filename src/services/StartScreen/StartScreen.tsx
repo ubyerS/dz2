@@ -1,25 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import { useTheme } from '../ThemeChanger/ThemeChanger';
 import './StartScreen.css';
-import darkMode from '../images/dark_mode.svg';
-import lightMode from '../images/light_mode.svg';
+import { MainLayout } from '../../components/MainLayout.tsx';
 
 function StartScreen() {
   const navigate = useNavigate();
-  const { theme, handleThemeChange } = useTheme();
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-[#d9d9d9] dark:bg-[#353535] relative">
-      <button
-        onClick={handleThemeChange}
-        className="absolute top-8 right-8 text-3xl p-2 hover:scale-110 transition-transform dark:text-white"
-      >
-        {theme === 'light' ? (
-          <img src={darkMode} alt={'dark mode'} />
-        ) : (
-          <img src={lightMode} alt={'light mode'} />
-        )}
-      </button>
+      <MainLayout />
       <div className="flex items-center">
         <button
           onClick={() => navigate('/game')}

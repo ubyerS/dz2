@@ -1,9 +1,9 @@
 import React from 'react';
-import { useTheme } from '../ThemeChanger/ThemeChanger.tsx';
 import darkMode from '../images/dark_mode.svg';
 import lightMode from '../images/light_mode.svg';
+import { useTheme } from './ThemeChanger.tsx';
 
-function MainLayout() {
+export function MainLayout() {
   const { theme, handleThemeChange } = useTheme();
 
   return (
@@ -19,5 +19,3 @@ function MainLayout() {
     </button>
   );
 }
-
-export default MainLayout;
