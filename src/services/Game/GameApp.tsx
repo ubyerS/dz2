@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ChoiceButton } from '../../components/ChoiceButton.tsx';
 import { ChoiceDisplay } from '../../components/ChoiceDisplay.tsx';
 import { GameResultDisplay } from '../../components/GameResult.tsx';
-import { MainLayout } from '../../components/MainLayout.tsx';
+import { SwitchLayout, Layout, StartText } from '../../components/MainLayout.tsx';
 import { ScoreDisplay } from '../../components/ScoreDisplay.tsx';
 import { useTheme } from '../../components/ThemeChanger.tsx';
 import { ScoreState } from '../../reducer/Store.ts';
@@ -54,13 +54,13 @@ export const GameApp = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen  bg-[#d9d9d9] dark:bg-[#353535]">
-      <MainLayout />
-      <h1 className="font-bold text-3xl text-blue-950 mb-8 dark:text-[#BEBFD1]">
-        Rock Paper Scissors
-      </h1>
-
-      <button onClick={handleReset} className="font-bold text-xl mb-4 dark:text-white">
+    <Layout>
+      <SwitchLayout />
+      <StartText>Rock Paper Scissors</StartText>
+      <button
+        onClick={handleReset}
+        className="font-bold text-xl mb-4 mt-8 dark:text-white"
+      >
         RESET THE SCORE
       </button>
 
@@ -88,7 +88,7 @@ export const GameApp = () => {
           ))}
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

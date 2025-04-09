@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import './StartScreen.css';
-import { MainLayout } from '../../components/MainLayout.tsx';
+import { SwitchLayout, Layout, StartText } from '../../components/MainLayout.tsx';
 
 function StartScreen() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen bg-[#d9d9d9] dark:bg-[#353535] relative">
-      <MainLayout />
+    <Layout>
+      <SwitchLayout />
       <div className="flex items-center">
         <button
           onClick={() => navigate('/game')}
@@ -17,15 +17,11 @@ function StartScreen() {
           PLAY
         </button>
         <div>
-          <h1 className="text-3xl text-blue-950 font-bold dark:text-[#BEBFD1]">
-            Rock Paper Scissors
-          </h1>
-          <h1 className="text-3xl text-blue-950 font-bold dark:text-[#BEBFD1]">
-            The game
-          </h1>
+          <StartText>Rock Paper Scissors</StartText>
+          <StartText>The game</StartText>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }
 
