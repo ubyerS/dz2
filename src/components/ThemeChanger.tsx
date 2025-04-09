@@ -1,4 +1,11 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useMemo,
+  useCallback,
+} from 'react';
 
 type ThemeContextType = {
   theme: string;
@@ -46,32 +53,31 @@ function ThemeProvider({ children }: { children: React.ReactNode }) {
     return () => mediaQuery.removeEventListener('change', handleSystemThemeChange);
   }, []);
 
-  const handleThemeChange = () => {
+  const handleThemeChange = useCallback(() => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     localStorage.setItem('theme', newTheme);
     setTheme(newTheme);
     applyTheme(newTheme);
-  };
+  }, [theme]);
 
-  const resetToSystemTheme = () => {
+  const resetToSystemTheme = useCallback(() => {
     localStorage.removeItem('theme');
     const newTheme = getSystemTheme();
     setTheme(newTheme);
     applyTheme(newTheme);
-  };
+  }, []);
 
-  return (
-    <ThemeChanger.Provider
-      value={{
-        theme,
-        setTheme,
-        handleThemeChange,
-        resetToSystemTheme,
-      }}
-    >
-      {children}
-    </ThemeChanger.Provider>
+  const contextValue = useMemo(
+    () => ({
+      theme,
+      setTheme,
+      handleThemeChange,
+      resetToSystemTheme,
+    }),
+    [theme, handleThemeChange, resetToSystemTheme],
   );
+
+  return <ThemeChanger.Provider value={contextValue}>{children}</ThemeChanger.Provider>;
 }
 
 function useTheme() {
