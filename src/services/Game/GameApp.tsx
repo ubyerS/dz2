@@ -59,7 +59,7 @@ export const GameApp = () => {
       <StartText>Rock Paper Scissors</StartText>
       <button
         onClick={handleReset}
-        className="font-bold text-xl mb-4 mt-8 dark:text-white"
+        className="font-bold text-xl text-black mb-4 mt-8 dark:text-white"
       >
         RESET THE SCORE
       </button>
@@ -72,11 +72,11 @@ export const GameApp = () => {
       <div className="gap-x-12">
         <div className="flex justify-center items-center mb-8 gap-x-14.5">
           <ChoiceDisplay choice={playerChoice} theme={currentTheme} flip />
-          <div className="font-bold text-xl dark:text-white">VS</div>
+          <div className="font-bold text-xl text-black dark:text-white">VS</div>
           <ChoiceDisplay choice={computerChoice} theme={currentTheme} />
         </div>
 
-        <h2 className="flex mb-6 justify-center dark:text-white">
+        <h2 className="flex mb-6 justify-center text-black dark:text-white">
           Choose your move, rock paper or scissors:
         </h2>
 
