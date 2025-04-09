@@ -6,7 +6,7 @@ type ChoiceButtonProps = {
 export const ChoiceButton = ({ choice, onClick }: ChoiceButtonProps) => (
   <button
     onClick={() => onClick(choice)}
-    className="w-42.5 h-15 text-white text-[25px] font-bold aspect-square rounded-[14px] place-content-center dark:bg-[#2751A3]"
+    className="w-42.5 h-15 text-white text-[25px] font-bold bg-red-500 aspect-square rounded-[14px] place-content-center dark:bg-[#2751A3]"
   >
     {choice.toUpperCase()}
   </button>

@@ -82,9 +82,7 @@ export const GameApp = () => {
 
         <div className="flex gap-x-12">
           {(CHOICE as Choice[]).map((choice) => (
-            <div className="w-42.5 h-15 bg-red-500 aspect-square rounded-[14px]">
-              <ChoiceButton key={choice} choice={choice} onClick={handleChoice} />
-            </div>
+            <ChoiceButton key={choice} choice={choice} onClick={handleChoice} />
           ))}
         </div>
       </div>
