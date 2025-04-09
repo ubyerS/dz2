@@ -9,6 +9,8 @@ import { useTheme } from '../../components/ThemeChanger.tsx';
 import { ScoreState } from '../../reducer/Store.ts';
 import { GameResult, Choice } from '../../types/types.ts';
 
+const CHOICE = ['rock', 'paper', 'scissors'];
+
 export const GameApp = () => {
   const { theme } = useTheme();
   const [gameResult, setGameResult] = useState<GameResult | null>(null);
@@ -79,7 +81,7 @@ export const GameApp = () => {
         </h2>
 
         <div className="flex gap-x-12">
-          {(['rock', 'paper', 'scissors'] as Choice[]).map((choice) => (
+          {(CHOICE as Choice[]).map((choice) => (
             <div className="w-42.5 h-15 bg-red-500 aspect-square rounded-[14px]">
               <ChoiceButton key={choice} choice={choice} onClick={handleChoice} />
             </div>
