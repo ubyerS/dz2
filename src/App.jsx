@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import StartScreen from './services/StartScreen/StartScreen.tsx';
-import GameApp from './services/Game/GameApp.tsx';
+import StartScreen from './pages/StartScreen/StartScreen.tsx';
+import GameApp from './pages/Game/GameApp.tsx';
 import { ThemeProvider } from './components/ThemeProvider.js';
 
 function App() {
