@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { createSelector } from 'reselect';
 import { ChoiceButton } from '../../components/ChoiceButton.tsx';
 import { ChoiceImage } from '../../components/ChoiceImage.tsx';
 import { GameResultDisplay } from '../../components/GameResult.tsx';
@@ -9,7 +10,7 @@ import { useTheme } from '../../components/ThemeProvider.tsx';
 import { ScoreState } from '../../store/mainStore.ts';
 import { GameResult, Choice } from '../../types/types.ts';
 
-const CHOICE = ['rock', 'paper', 'scissors'];
+const CHOICE: Choice[] = ['rock', 'paper', 'scissors'];
 
 export const GameApp = () => {
   const { theme } = useTheme();
@@ -18,15 +19,17 @@ export const GameApp = () => {
   const [computerChoice, setComputerChoice] = useState<Choice | null>(null);
   const currentTheme: 'light' | 'dark' = theme === 'light' ? 'light' : 'dark';
 
-  const scores = useSelector((state: ScoreState) => ({
-    person: state.personScore,
-    computer: state.computerScore,
-  }));
+  const selectScores = createSelector(
+    (state: ScoreState) => state.personScore,
+    (state: ScoreState) => state.computerScore,
+    (person, computer) => ({ personScore: person, computerScore: computer }),
+  );
+  const scores = useSelector(selectScores);
+
   const dispatch = useDispatch();
 
   const handleChoice = (playerChoice: Choice) => {
-    const choices: Choice[] = ['rock', 'paper', 'scissors'];
-    const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+    const computerChoice = CHOICE[Math.floor(Math.random() * CHOICE.length)];
 
     setPlayerChoice(playerChoice);
     setComputerChoice(computerChoice);
@@ -37,12 +40,12 @@ export const GameApp = () => {
       (playerChoice === 'scissors' && computerChoice === 'paper');
 
     if (playerWins) {
-      dispatch({ type: 'INCREMENT_PERSON' });
+      dispatch({ type: 'CHANGE_PERSON_SCORE', payload: 1 });
       setGameResult(GameResult.win);
     } else if (playerChoice === computerChoice) {
       setGameResult(GameResult.draw);
     } else {
-      dispatch({ type: 'INCREMENT_COMPUTER' });
+      dispatch({ type: 'CHANGE_COMPUTER_SCORE', payload: 1 });
       setGameResult(GameResult.lose);
     }
   };
@@ -63,7 +66,10 @@ export const GameApp = () => {
         RESET THE SCORE
       </button>
 
-      <ScoreDisplay playerScore={scores.person} computerScore={scores.computer} />
+      <ScoreDisplay
+        playerScore={scores.personScore}
+        computerScore={scores.computerScore}
+      />
       <div className="flex text-red-600 h-[100px]">
         <GameResultDisplay result={gameResult} />
       </div>
