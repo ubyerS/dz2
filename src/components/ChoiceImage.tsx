@@ -1,4 +1,5 @@
-import { Choice, choiceImages } from '../types/types.ts';
+import { choiceImages } from '../constants/consts.ts';
+import { Choice } from '../types/types.ts';
 
 type ChoiceImageProps = {
   choice: Choice | null;
