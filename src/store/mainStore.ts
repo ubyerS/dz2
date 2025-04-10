@@ -6,16 +6,12 @@ const defaultState = {
 };
 
 const RESET_SCORES = 'RESET_SCORES';
-const INCREMENT_PERSON_SCORE = 'INCREMENT_PERSON_SCORE';
-const DECREMENT_PERSON_SCORE = 'DECREMENT_PERSON_SCORE';
-const INCREMENT_COMPUTER_SCORE = 'INCREMENT_COMPUTER_SCORE';
-const DECREMENT_COMPUTER_SCORE = 'DECREMENT_COMPUTER_SCORE';
+const CHANGE_PERSON_SCORE = 'CHANGE_PERSON_SCORE';
+const CHANGE_COMPUTER_SCORE = 'CHANGE_COMPUTER_SCORE';
 
 type CounterAction =
-  | { type: 'INCREMENT_PERSON_SCORE' }
-  | { type: 'DECREMENT_PERSON_SCORE' }
-  | { type: 'INCREMENT_COMPUTER_SCORE' }
-  | { type: 'DECREMENT_COMPUTER_SCORE' }
+  | { type: 'CHANGE_PERSON_SCORE'; payload: number }
+  | { type: 'CHANGE_COMPUTER_SCORE'; payload: number }
   | { type: 'RESET_SCORES' };
 
 export interface ScoreState {
@@ -25,16 +21,21 @@ export interface ScoreState {
 
 function counterReducer(state = defaultState, action: CounterAction): ScoreState {
   switch (action.type) {
-    case INCREMENT_PERSON_SCORE:
-      return { ...state, personScore: state.personScore + 1 };
-    case DECREMENT_PERSON_SCORE:
-      return { ...state, personScore: state.personScore - 1 };
-    case INCREMENT_COMPUTER_SCORE:
-      return { ...state, computerScore: state.computerScore + 1 };
-    case DECREMENT_COMPUTER_SCORE:
-      return { ...state, computerScore: state.computerScore - 1 };
+    case CHANGE_PERSON_SCORE:
+      return {
+        ...state,
+        personScore: Math.max(0, state.personScore + action.payload),
+      };
+    case CHANGE_COMPUTER_SCORE:
+      return {
+        ...state,
+        computerScore: Math.max(0, state.computerScore + action.payload),
+      };
     case RESET_SCORES:
-      return { personScore: 0, computerScore: 0 };
+      return {
+        personScore: 0,
+        computerScore: 0,
+      };
     default:
       return state;
   }
