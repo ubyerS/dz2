@@ -1,18 +1,18 @@
 import { Choice, choiceImages } from '../types/types.ts';
 
-type ChoiceDisplayProps = {
+type ChoiceImageProps = {
   choice: Choice | null;
   theme: 'light' | 'dark';
   className?: string;
   flip?: boolean;
 };
 
-export const ChoiceDisplay = ({
+export const ChoiceImage = ({
   choice,
   theme,
   className = '',
   flip = false,
-}: ChoiceDisplayProps) => (
+}: ChoiceImageProps) => (
   <div>
     {choice ? (
       <img
