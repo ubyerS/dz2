@@ -3,11 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ChoiceButton } from '../../components/ChoiceButton.tsx';
 import { ChoiceImage } from '../../components/ChoiceImage.tsx';
 import { GameResultDisplay } from '../../components/GameResult.tsx';
-import { MainLayout } from '../../components/MainLayout.tsx';
+import { MainLayout, StartText } from '../../components/MainLayout.tsx';
 import { ScoreDisplay } from '../../components/ScoreDisplay.tsx';
-import { useTheme } from '../../components/ThemeChanger.tsx';
-import { ThemeSwitch } from '../../components/ThemeSwitch.tsx';
-import { ScoreState } from '../../reducer/Store.ts';
+import { useTheme } from '../../components/ThemeProvider.tsx';
+import { ScoreState } from '../../store/mainStore.ts';
 import { GameResult, Choice } from '../../types/types.ts';
 
 const CHOICE = ['rock', 'paper', 'scissors'];
@@ -55,8 +54,8 @@ export const GameApp = () => {
   };
 
   return (
-    <MainLayout title="Rock Paper Scissors">
-      <ThemeSwitch />
+    <MainLayout>
+      <StartText>Rock Paper Scissors</StartText>
       <button
         onClick={handleReset}
         className="font-bold text-xl text-black mb-4 mt-8 dark:text-white"

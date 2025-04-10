@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import StartScreen from './services/StartScreen/StartScreen.tsx';
 import GameApp from './services/Game/GameApp.tsx';
-import { ThemeProvider } from './components/ThemeChanger.tsx';
+import { ThemeProvider } from './components/ThemeProvider.js';
 
 function App() {
   return (
