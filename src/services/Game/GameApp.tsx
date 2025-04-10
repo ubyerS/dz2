@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ChoiceButton } from '../../components/ChoiceButton.tsx';
-import { ChoiceDisplay } from '../../components/ChoiceDisplay.tsx';
+import { ChoiceImage } from '../../components/ChoiceImage.tsx';
 import { GameResultDisplay } from '../../components/GameResult.tsx';
-import { SwitchLayout, Layout, StartText } from '../../components/MainLayout.tsx';
+import { MainLayout } from '../../components/MainLayout.tsx';
 import { ScoreDisplay } from '../../components/ScoreDisplay.tsx';
 import { useTheme } from '../../components/ThemeChanger.tsx';
+import { ThemeSwitch } from '../../components/ThemeSwitch.tsx';
 import { ScoreState } from '../../reducer/Store.ts';
 import { GameResult, Choice } from '../../types/types.ts';
 
@@ -54,9 +55,8 @@ export const GameApp = () => {
   };
 
   return (
-    <Layout>
-      <SwitchLayout />
-      <StartText>Rock Paper Scissors</StartText>
+    <MainLayout title="Rock Paper Scissors">
+      <ThemeSwitch />
       <button
         onClick={handleReset}
         className="font-bold text-xl text-black mb-4 mt-8 dark:text-white"
@@ -71,9 +71,9 @@ export const GameApp = () => {
 
       <div className="gap-x-12">
         <div className="flex justify-center items-center mb-8 gap-x-14.5">
-          <ChoiceDisplay choice={playerChoice} theme={currentTheme} flip />
+          <ChoiceImage choice={playerChoice} theme={currentTheme} flip />
           <div className="font-bold text-xl text-black dark:text-white">VS</div>
-          <ChoiceDisplay choice={computerChoice} theme={currentTheme} />
+          <ChoiceImage choice={computerChoice} theme={currentTheme} />
         </div>
 
         <h2 className="flex mb-6 justify-center text-black dark:text-white">
@@ -86,7 +86,7 @@ export const GameApp = () => {
           ))}
         </div>
       </div>
-    </Layout>
+    </MainLayout>
   );
 };
 

@@ -1,31 +1,24 @@
-import React, { ReactNode } from 'react';
-import darkMode from '../images/dark_mode.svg';
-import lightMode from '../images/light_mode.svg';
-import { useTheme } from './ThemeChanger.tsx';
+import React, { PropsWithChildren } from 'react';
 
-export function SwitchLayout() {
-  const { theme, handleThemeChange } = useTheme();
-
-  return (
-    <button
-      onClick={handleThemeChange}
-      className="absolute top-8 right-8 text-3xl p-2 hover:scale-110 transition-transform dark:text-white"
-    >
-      {theme === 'light' ? (
-        <img src={darkMode} alt={'dark mode'} />
-      ) : (
-        <img src={lightMode} alt={'light mode'} />
-      )}
-    </button>
-  );
+interface LayoutProps extends PropsWithChildren {
+  title?: string;
+  subtitle?: string;
+  className?: string;
+  titleClassName?: string;
 }
 
-export const Layout = ({ children }: { children: ReactNode }) => (
-  <div className="flex flex-col justify-center items-center min-h-screen bg-[#d9d9d9] dark:bg-[#353535] relative">
+export const MainLayout: React.FC<LayoutProps> = ({ children, title, subtitle }) => (
+  <div className="flex justify-center flex-col items-center min-h-screen bg-[#d9d9d9] dark:bg-[#353535] ">
+    {title && (
+      <div className="flex flex-col">
+        <h1 className="text-3xl text-blue-950 font-bold dark:text-[#BEBFD1] ">{title}</h1>
+        {subtitle && (
+          <h2 className="text-3xl text-blue-950 font-bold dark:text-[#BEBFD1] ">
+            {subtitle}
+          </h2>
+        )}
+      </div>
+    )}
     {children}
   </div>
-);
-
-export const StartText = ({ children }: { children: ReactNode }) => (
-  <h1 className="text-3xl text-blue-950 font-bold dark:text-[#BEBFD1]">{children}</h1>
 );
